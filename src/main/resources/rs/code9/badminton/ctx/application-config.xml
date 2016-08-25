@@ -5,7 +5,7 @@
 		
 	<import resource="classpath:rs/code9/badminton/ctx/mvc-config.xml"/>
 	<import resource="classpath:rs/code9/badminton/ctx/service-config.xml"/>
-	<import resource="classpath:rs/code9/dminton/ctx/data-access-config.xml"/>
+	<import resource="classpath:rs/code9/badminton/ctx/data-access-config.xml"/>
 	<import resource="classpath:rs/code9/badminton/ctx/security-config.xml"/>
 	
 </beans>	
