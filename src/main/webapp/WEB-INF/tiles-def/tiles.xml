@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<definition name="standardLayout" template="/WEB-INF/jsp/layout/standard.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="includeJQueryCalendar" value="false" />
+		<put-attribute name="header" value="/WEB-INF/jsp/sections/header.jsp" />
+		<put-attribute name="leftMenu" value="leftMenu" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/sections/footer.jsp" />
+	</definition>
+
+	<definition name="home" extends="standardLayout">
+		<put-attribute name="content" value="/WEB-INF/jsp/content/home.jsp" />
+	</definition>
+	
+	<definition name="users-list" extends="standardLayout">
+		<put-attribute name="content" value="/WEB-INF/jsp/content/users/list.jsp" />
+	</definition>
+	<definition name="user-show" extends="standardLayout">
+		<put-attribute name="content" value="/WEB-INF/jsp/content/users/show.jsp" />
+	</definition>
+	<definition name="user-edit" extends="standardLayout">
+		<put-attribute name="content" value="/WEB-INF/jsp/content/users/edit.jsp" />
+	</definition>
+
+	<definition name="leftMenu" template="/WEB-INF/jsp/layout/leftMenu.jsp">
+		<put-list-attribute name="leftMenuItems">
+			<item link="home" value="menu.left.item.home.caption" />
+			<item link="about" value="menu.left.item.about.caption" />
+			<item link="news" value="menu.left.item.news.caption" />
+			<item link="photo" value="menu.left.item.photo.caption" />
+			<item link="contact" value="menu.left.item.contact.caption" />
+		</put-list-attribute>
+	</definition>
+
+	<definition name="home" extends="standardLayout">
+		<put-attribute name="title" value="page.home.title" />
+		<put-attribute name="includeJQueryCalendar" value="true" />
+		<put-attribute name="content" value="/WEB-INF/jsp/content/home.jsp" />
+	</definition>
+	
+	<definition name="login" extends="standardLayout">
+		<put-attribute name="includeJQueryCalendar" value="false" />
+		<put-attribute name="content" value="/WEB-INF/jsp/content/login.jsp" />
+	</definition>
+
+</tiles-definitions>

@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+form {
+	margin: 10px;
+	padding: 10px;
+}
+
+label {
+	display: inline-block;
+	width: 100px;
+	text-align: right;
+}
+
+span.error {
+	color: red;
+	font-size: 0.9em;
+}
+
+span.error input {
+	background-color: rgb(255, 253, 221);
+}
+
+input[type=submit] {
+	margin: 5px 5px 0 33px;
+}

@@ -1,0 +1,151 @@
+@CHARSET "UTF-8";
+@IMPORT url("form.css");
+
+body {
+	font-family: Verdana, Arial, sans-serif;
+}
+/* Header styles */
+#header {
+	/*
+		Minimum width of the page when resizing - prevents "dancing" of sections
+		when browser window is too small.
+		Also present on other main parts of the page - main and footer
+	*/ 
+	min-width: 680px;
+	/* height is dictated by logo image height */
+	height: 105px;
+	padding: 8px 16px;
+	text-align: center;
+}
+#logo {
+	/*
+		float logo to the left; necessary as logo is SPAN element
+		so it is not displayed on the block-level
+	*/
+	float: left;
+	/* logo image dimensions */
+	width: 149px;
+	height: 105px;
+	background: url("../images/logo.png") no-repeat scroll 0 0 transparent;
+}
+#title {
+	height: 65px;
+	font-size: 2em;
+	font-weight: bold;
+}
+#date {
+	/* date is on the right side of the header */
+	float: right;
+	height: 20px;
+	font-size: 0.75em;
+}
+#userInfo {
+	/* user info is on the right side of the header */
+	float: right;
+	/*
+		do not allow floating elements on the right, so user info is positioned
+		below date.
+	*/
+	clear: right;
+	height: 53px;
+	font-size: 0.75em;
+}
+#search {
+}
+/* Main container styles */
+#main {
+	/*
+		Minimum width of the page when resizing - prevents "dancing" of sections
+		when browser window is too small.
+		Also present on other main parts of the page - main and footer
+	*/ 
+	min-width: 680px;
+	/*
+		Minimum content height, so footer is always
+		towards the bottom of the page.
+	*/
+	min-height: 490px;
+	padding: 8px 16px;
+}
+/* Navigation menu styles */
+#leftMenu {
+	/* float to the left, so content can be positioned to the right of menu */
+	float: left;
+	/* same width as logo image */
+	width: 149px;
+}
+ul.leftMenu {
+	/* override standard built in rules for UL margin and padding */
+	margin: 0px;
+	padding: 0px 16px;
+}
+ul.leftMenu li {
+	/* no bullets */
+	list-style-type: none;
+}
+ul.leftMenu li a.navigationLink,
+ul.leftMenu li a.navigationLink:link,
+ul.leftMenu li a.navigationLink:hover,
+ul.leftMenu li a.navigationLink:active,
+ul.leftMenu li a.navigationLink:visited {
+	/*
+		make navigation links block-level, so that hover and active effects
+		can look better
+	*/
+	display: block;
+	padding: 8px 4px;
+	/* override standard anchor underline decoration */
+	text-decoration: none;
+	color: #000000;
+	/* remove standard anchor outline */
+	outline: none;
+}
+ul.leftMenu li a.navigationLink:hover {
+	/* menu item hover background */
+	background-color: #D9D9D9;
+}
+ul.leftMenu li a.navigationLink:active,
+ul.leftMenu li a.navigationLink.active {
+	/* menu item active background */
+	background-color: #D3DFEE;
+}
+/* Content styles */
+#content {
+	/* float to the left of navigation menu */
+	float: left;
+	/* flexible width, content will resize with browser window */
+	width: 70%;
+	margin-left: 40px;
+}
+#slots {
+	margin: 0px 32px;
+	/* spread within content container */
+	width: 100%;
+}
+/* Footer styles */
+#footer {
+	/*
+		Minimum width of the page when resizing - prevents "dancing" of sections
+		when browser window is too small.
+		Also present on other main parts of the page - main and footer
+	*/ 
+	min-width: 680px;
+	/* no floating elements allowed next to footer */
+	clear: both;
+	font-size: 12px;
+	text-align: center;
+}
+/* Paragraph styles */
+p.text {
+	text-align: justify;
+}
+/* Util styles */
+div.separator {
+	/*
+		make 32px separation between elements; useful when placed in container
+		with floating elements and/or SPANs (SPANs are not block level elements,
+		so margin does not affect them as expected
+	*/
+	width: 100%;
+	height: 32px;	
+}
