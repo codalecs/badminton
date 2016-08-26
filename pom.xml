@@ -9,11 +9,11 @@
 	<url>http://www.code9.rs</url>
 
 	<properties>
-		<org.springframework.version>3.1.0.RELEASE</org.springframework.version>
+		<org.springframework.version>4.3.2.RELEASE</org.springframework.version>
 		<org.slf4j.version>1.6.4</org.slf4j.version>
 		<ch.qos.logback.version>1.0.0</ch.qos.logback.version>
 		<org.apache.tiles.version>2.2.2</org.apache.tiles.version>
-		<hibernate.version>4.1.1.Final</hibernate.version>
+		<hibernate.version>5.2.1.Final</hibernate.version>
 	</properties>
 
 	<dependencies>
@@ -32,6 +32,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
 		<dependency>
@@ -157,21 +162,38 @@
 		</dependency>
 
 		<dependency>
-    		<groupId>javax.servlet</groupId>
-    		<artifactId>javax.servlet-api</artifactId>
-    		<version>3.0.1</version>
-    		<scope>provided</scope>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4-1200-jdbc41</version>
 		</dependency>
 
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+		
 		<!-- JPA -->
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
 			<version>1.0.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
+			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 			<scope>runtime</scope>
 		</dependency>

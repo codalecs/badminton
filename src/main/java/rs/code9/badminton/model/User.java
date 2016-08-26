@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
  * @author d.gajic
  */
 @Entity
-@Table(name = "user")
+@Table(name = "account")
 public class User extends AbstractBaseEntity {
 
 	/**

@@ -37,8 +37,10 @@
 	 	<property name="packagesToScan" value="rs.code9.badminton.model" />
 	 	<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect" />
 				<property name="generateDdl" value="true" />
-				<property name="database" value="HSQL" />
+				<property name="showSql" value="true"/>
+				<!-- <property name="database" value="HSQL" /> -->
 			</bean>
 		</property>
 	 </bean>

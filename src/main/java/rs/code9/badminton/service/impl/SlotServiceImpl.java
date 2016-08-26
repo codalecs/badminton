@@ -69,6 +69,8 @@ public final class SlotServiceImpl implements SlotService {
 		DateTime start = new DateTime(dateTime).withMillisOfDay(0);
 		DateTime end = start.plusSeconds(24 * 60 * 60 * 1000);
 		List<Slot> alreadyReserved = slotRepository.findByUserIdAndDate(userId, start.toDate(), end.toDate());
+		
+		//alreadyReserved.stream().filter(u -> u.getPaid() == true );
 		if (alreadyReserved == null || alreadyReserved.size() < 2) {
 			slot = new Slot();
 			slot.setCancelled(false);

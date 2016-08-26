@@ -52,5 +52,5 @@
     	</property>
 	</bean>
 
-	<bean name="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+	<bean name="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 </beans>
