@@ -5,27 +5,23 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import rs.code9.badminton.model.Slot;
 import rs.code9.badminton.model.User;
 import rs.code9.badminton.service.SlotService;
 import rs.code9.badminton.service.UserService;
-import rs.code9.util.FullCalendarCustomDateEditor;
 
 /**
  * Controller for handling slot related requests.
  *
  * @author p.stanic
  */
-@Controller
+@RestController
 @RequestMapping("/courts/{courtId}/slots")
 public class SlotController {
 
@@ -37,11 +33,6 @@ public class SlotController {
 	
 	@Autowired
 	private UserService userService;
-	
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class, new FullCalendarCustomDateEditor());
-	}
 
 	/**
 	 * Retrieves reserved slots for a court.
@@ -52,7 +43,7 @@ public class SlotController {
 	 * @return <code>List</code> of reserved slots for a given court
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody List<Slot> getSlotsForCourt(
+	public List<Slot> getSlotsForCourt(
 			@PathVariable long courtId,
 			@RequestParam(value = "start") Date startDate,
 			@RequestParam(value = "end") Date endDate) {
@@ -61,7 +52,7 @@ public class SlotController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody String reserveSlotForCurrentUser(
+	public String reserveSlotForCurrentUser(
 			@PathVariable long courtId,
 			@RequestParam(value = "start") Date startDate) {
 		org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -69,17 +60,17 @@ public class SlotController {
 		Slot slot = slotService.reserveSlotOnCourtForUser(courtId, user.getId(), startDate);
 		String retVal = "Success";
 		if (slot == null) {
-			retVal = "Niste u mogucnosti da rezervisete termin.";
+			retVal = "You are not able to book an appointment.";
 		}
 		return retVal;
 	}
 
 	@RequestMapping(value = "{slotId}", method = RequestMethod.POST, params = "cancel")
-	public @ResponseBody String cancelSlot(@PathVariable long slotId) {
+	public String cancelSlot(@PathVariable long slotId) {
 		String retVal = "Success";
 		boolean success = slotService.cancelSlot(slotId);
 		if (!success) {
-			retVal = "Niste u mogucnosti da otkazete termin.";
+			retVal = "You are not able to cancel appointments.";
 		}
 		return retVal;
 	}

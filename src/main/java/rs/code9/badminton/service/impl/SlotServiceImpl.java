@@ -23,7 +23,7 @@ import rs.code9.badminton.service.SlotService;
  */
 @Service
 @Transactional(readOnly = true)
-public final class SlotServiceImpl implements SlotService {
+public class SlotServiceImpl implements SlotService {
 	/**
 	 * Slot repository.
 	 */

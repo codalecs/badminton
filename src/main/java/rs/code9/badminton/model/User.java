@@ -45,6 +45,10 @@ public class User extends AbstractBaseEntity {
 	@Size(min = 5, max = 10, message = "Password must be between 5 and 10 characters long")
 	private String password;
 	
+/*	@NotNull
+	@Size(min = 5, max = 10, message = "Password must be between 5 and 10 characters long")
+	private String securityGroup;*/
+	
 	private byte[] picture;
 
 	/**
@@ -116,4 +120,13 @@ public class User extends AbstractBaseEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+/*
+	public String getSecurityGroup() {
+		return securityGroup;
+	}
+
+	@Column(name = "security_group", length = 10)
+	public void setSecurityGroup(String securityGroup) {
+		this.securityGroup = securityGroup;
+	}*/
 }
