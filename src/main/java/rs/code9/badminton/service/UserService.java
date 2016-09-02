@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import rs.code9.badminton.model.User;
-import rs.code9.badminton.repository.UserRepository;
+import rs.code9.badminton.repository.UserJpaRepository;
 import rs.code9.badminton.service.UserService;
 
 /**
@@ -22,7 +22,7 @@ import rs.code9.badminton.service.UserService;
 public class UserService {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserJpaRepository userRepository;
 
 	/**
 	 * Get user with the given ID.

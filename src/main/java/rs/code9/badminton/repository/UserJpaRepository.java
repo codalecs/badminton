@@ -13,7 +13,7 @@ import rs.code9.badminton.model.User;
  *
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserJpaRepository extends JpaRepository<User, Long> {
 	/**
 	 * 
 	 * @param email

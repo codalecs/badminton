@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
+import rs.code9.badminton.exceptions.ServiceFailureException;
 import rs.code9.badminton.model.User;
 import rs.code9.badminton.service.UserService;
 
@@ -36,17 +35,17 @@ import rs.code9.badminton.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
+
 	/**
 	 * List all users.
 	 * 
 	 * @return MaV with the list of all users.
 	 */
-	@RequestMapping( value = "users/", method = RequestMethod.GET)
+	@RequestMapping(value = "users/", method = RequestMethod.GET)
 	public List<User> listAll() {
-		return userService.findAll( );
+		return userService.findAll();
 	}
-	
+
 	/**
 	 * Show a user with given ID.
 	 * 
@@ -57,36 +56,28 @@ public class UserController {
 	public User getUser(@PathVariable("id") long id) {
 		return userService.get(id);
 	}
-	
-	
+
 	/**
 	 * Accept form submit for a new user.
 	 * 
-	 * @param user user from the form.
+	 * @param user
+	 *            user from the form.
 	 * @return MaV to redirect to user display.
 	 */
-	@RequestMapping(value="users/new", method = RequestMethod.POST)
-	public ModelAndView newUser(
-			@ModelAttribute("user") @Valid User user,
-			BindingResult result,
-			@RequestParam("user.picture") MultipartFile picture) {
-		if (result.hasErrors()) {
-			return new ModelAndView("user-edit", "user", user).addObject("newUser", true);
-		}
+	@RequestMapping(value = "users/create", method = RequestMethod.POST)
+	public User createUser(@ModelAttribute("user") @Valid User user, @RequestParam("user.picture") MultipartFile picture) throws ServiceFailureException {
 		if (!picture.isEmpty()) {
 			try {
 				user.setPicture(picture.getBytes());
 			} catch (IOException e) {
-				result.rejectValue("user.picture", "", "I/O Exception handling uploaded picture.");
-				return new ModelAndView("user-edit", "user", user).addObject("newUser", true);
+				throw new ServiceFailureException( "I/O Exception handling uploaded picture.");
 			}
 		}
-		User newUser = userService.create(user);
-		return new ModelAndView("redirect:/users/" + newUser.getId());
+		return userService.create(user);
 	}
-	
+
 	private static final String IMG_TYPE = "image/jpg";
-	
+
 	@RequestMapping(value = "users/{id}/picture", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPicture(@PathVariable("id") long id) {
 		User user = userService.get(id);

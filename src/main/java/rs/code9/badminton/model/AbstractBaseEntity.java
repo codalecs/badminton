@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Base entity class.
  *
@@ -39,6 +41,7 @@ public abstract class AbstractBaseEntity implements Serializable {
 	/**
 	 * @param id
 	 */
+	@JsonIgnore
 	public void setId(Long id) {
 		this.id = id;
 	}

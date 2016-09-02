@@ -16,7 +16,7 @@ import rs.code9.badminton.model.Slot;
  * @author p.stanic
  */
 @Repository
-public interface SlotRepository extends JpaRepository<Slot, Long> {
+public interface SlotJpaRepository extends JpaRepository<Slot, Long> {
 	/**
 	 * Returns <code>List</code> of reserved slots for a given court.
 	 *

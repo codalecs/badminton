@@ -52,26 +52,21 @@ public class SlotController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String reserveSlotForCurrentUser(
+	public boolean reserveSlotForCurrentUser(
 			@PathVariable long courtId,
 			@RequestParam(value = "start") Date startDate) {
 		org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = userService.findByEmail(principal.getUsername());
 		Slot slot = slotService.reserveSlotOnCourtForUser(courtId, user.getId(), startDate);
-		String retVal = "Success";
+		
 		if (slot == null) {
-			retVal = "You are not able to book an appointment.";
+			return false;
 		}
-		return retVal;
+		return true;
 	}
 
 	@RequestMapping(value = "{slotId}", method = RequestMethod.POST, params = "cancel")
-	public String cancelSlot(@PathVariable long slotId) {
-		String retVal = "Success";
-		boolean success = slotService.cancelSlot(slotId);
-		if (!success) {
-			retVal = "You are not able to cancel appointments.";
-		}
-		return retVal;
+	public boolean cancelSlot(@PathVariable long slotId) {
+		return  slotService.cancelSlot(slotId);
 	}
 }

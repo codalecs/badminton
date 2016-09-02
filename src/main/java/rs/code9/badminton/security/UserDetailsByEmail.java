@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import rs.code9.badminton.model.User;
-import rs.code9.badminton.repository.UserRepository;
+import rs.code9.badminton.repository.UserJpaRepository;
 
 /**
  * @author d.gajic
@@ -25,7 +25,7 @@ import rs.code9.badminton.repository.UserRepository;
 public class UserDetailsByEmail implements UserDetailsService {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserJpaRepository userRepository;
 	
 	/* (non-Javadoc)
 	 * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
